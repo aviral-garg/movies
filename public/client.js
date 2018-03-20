@@ -1,6 +1,7 @@
 var player;
 var selectedMovieName;
-console.log("branch test for CI");
+const imgDIR = '/images/movies/';
+
 // Pause the video when the modal is closed
 $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function(event) {
     // Remove the src so the player itself gets removed, as this is the only
@@ -44,7 +45,6 @@ function stopVideo() {
 function showPlayer(movieName) {
     // 3. This function creates an <iframe> (and YouTube player)
     //    after the API code downloads.
-console.log(typeof(movies[movieName].videoID));
     player = new YT.Player('trailer-video-container', {
         height: '390',
         width: '640',
@@ -71,7 +71,6 @@ $(document).on('click', '.movie-tile', function(event) {
 
 
     $("#trailer-video-container").empty();
-    //console.log(document.getElementById('trailer-video-container'));
     showPlayer(selectedMovieName);
 
 });
@@ -95,17 +94,20 @@ $(document).ready(function() {
 });
 
 
-const imgDIR = '/images/movies/';
 
 
-
-// uncategorized test code
 // After the API loads, call a function to enable the search box.
 function handleAPILoaded() {  
     // GET request to get movie items from the server and call movieListController function
     httpGetAsync('/movieList', movieListController);
 
 }
+
+
+/*********************************************************************************************************************/
+/*            Code above this line is yet to be refactored
+/*********************************************************************************************************************/
+
 
 
 /*
@@ -156,7 +158,6 @@ function checkIfReceivedVideoIdForAll(){
  * @param videoID - videoID of the youtube trailer video of the movie
  */
 function addMovievideoID(mName, videoID){
-    console.log(mName + videoID);
     movies[mName].videoID = videoID;
     checkIfReceivedVideoIdForAll();
 }
